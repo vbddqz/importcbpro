@@ -1,0 +1,24 @@
+import cbpro
+
+# 初始化API
+client = cbpro.AuthenticatedClient(api_key, api_secret, passphrase)
+
+# 获取市场深度
+depth = client.get_product_order_book('BTC-USD', level=2)
+
+# 获取账户余额
+balance = client.get_accounts()
+
+# 下单
+order = client.place_limit_order(
+    product_id='BTC-USD',
+    side='buy',
+    price='50000',
+    size='1'
+)
+
+# 撤单
+client.cancel_order(order['id'])
+
+# 获取交易历史
+trades = client.get_fills(product_id='BTC-USD')
